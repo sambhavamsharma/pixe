@@ -29,8 +29,8 @@ export * from "./enums"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Messages
- * const messages = await prisma.message.findMany()
+ * // Fetch zero or more Projects
+ * const projects = await prisma.project.findMany()
  * ```
  * 
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -44,6 +44,11 @@ export { Prisma }
 path.join(__dirname, "query_engine-windows.dll.node")
 path.join(process.cwd(), "src/generated/query_engine-windows.dll.node")
 
+/**
+ * Model Project
+ * 
+ */
+export type Project = Prisma.ProjectModel
 /**
  * Model Message
  * 
