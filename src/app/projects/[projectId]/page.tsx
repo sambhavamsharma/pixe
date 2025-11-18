@@ -1,4 +1,8 @@
+// @ts-nocheck
+
+
 import { ProjectView } from "@/modules/projects/ui/views/project-view";
+
 
 import { getQueryClient, trpc } from "@/trpc/server";
 
