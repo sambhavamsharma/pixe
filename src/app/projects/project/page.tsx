@@ -1,8 +1,4 @@
-// @ts-nocheck
-
-
 import { ProjectView } from "@/modules/projects/ui/views/project-view";
-
 
 import { getQueryClient, trpc } from "@/trpc/server";
 
@@ -16,9 +12,8 @@ interface Props {
     };
 }
 
-const Page = async () => {
-    const projectId = ""; // hardcode temporary
-
+const Page = async ({ params }: Props) => {
+    const { projectId } = params;
 
     const queryClient = getQueryClient();
     void queryClient.prefetchQuery(
