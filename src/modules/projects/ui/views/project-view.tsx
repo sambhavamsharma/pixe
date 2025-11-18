@@ -18,12 +18,17 @@ import Link from "next/link";
 import { CodeView } from "@/components/code-view/";
 import { FileExplorer } from "@/components/file-explorer"
 import { UserControl } from "@/components/user-components";
+import { useAuth } from "@clerk/nextjs";
 
 interface Props {
     projectId: string;
 };
 
 export const ProjectView = ({ projectId }: Props) => {
+    const { has } = useAuth();
+    const hasProAccess = has?.({ plan: "pro" });
+    const isFreeTier = has?.({ plan: "free_user"})
+
     const [activeFragment, setActiveFragment] = useState<Fragment | null>(null);
     const [tabState, setTabState] = useState<"preview" | "code">("preview");
 
@@ -55,7 +60,7 @@ export const ProjectView = ({ projectId }: Props) => {
                         value={tabState}
                         onValueChange={(value) => setTabState(value as "preview" | "code")}
                     >
-                        <div className="w-full flex items-center p-2 borfer-b gap-x-2">
+                        <div className="w-full flex items-center p-2 border-b gap-x-2">
                             <TabsList className="h-8 p-0 border rounded-md">
                                 <TabsTrigger value="preview" className="rounded-md">
                                     <EyeIcon /> <span>Demo</span>
@@ -65,11 +70,13 @@ export const ProjectView = ({ projectId }: Props) => {
                                 </TabsTrigger>
                             </TabsList>
                             <div className="ml-auto flex items-center gap-x-2">
+                                {!hasProAccess && (
                                 <Button asChild size="sm" variant="tertiary">
                                     <Link href="/pricing">
                                         <CrownIcon /> Upgrade
                                     </Link>
                                 </Button>
+                                )}
                                 <UserControl />
                             </div>
                         </div>
