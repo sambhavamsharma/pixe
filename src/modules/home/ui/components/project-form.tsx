@@ -1,4 +1,4 @@
-"use clientr";
+"use client";
 
 import { z } from "zod";
 import { toast } from "sonner";

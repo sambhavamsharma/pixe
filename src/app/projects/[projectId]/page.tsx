@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Page = async ({ params }: Props) => {
-    const { projectId } = params;
+    const { projectId } = await params;
 
     const queryClient = getQueryClient();
     void queryClient.prefetchQuery(
