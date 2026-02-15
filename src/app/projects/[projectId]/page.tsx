@@ -7,9 +7,9 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Suspense } from "react";
 
 interface Props {
-    params: {
+    params: Promise<{
         projectId: string;
-    };
+    }>;
 }
 
 const Page = async ({ params }: Props) => {
